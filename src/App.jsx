@@ -25,10 +25,13 @@ function App() {
   function handleChange(event) {
     setSearchValue(event.target.value);
   }
-  function handleClick(event) {
-    setShoppingListItems([event.target.value, ...shoppingListItems]);
-    console.log(event);
+
+  console.log(shoppingListItems);
+
+  function addShoppingItem(newItem) {
+    setShoppingListItems([...shoppingListItems, newItem]);
   }
+
   return (
     <main>
       <input onChange={handleChange}></input>
@@ -36,21 +39,21 @@ function App() {
         {searchValue
           ? shoppingItems
               .filter(({ name }) => name.de.startsWith(searchValue))
-              .map(({ name, _id }) => (
-                <button onClick={handleClick} key={_id}>
-                  {name.de}
+              .map(item => (
+                <button onClick={() => addShoppingItem(item)} key={item._id}>
+                  {item.name.de}
                 </button>
               ))
           : null}
       </div>
       <h2>recently used</h2>
-      {/* <ul>
+      <div>
         {shoppingListItems
           ? shoppingListItems.map(({ name, _id }) => (
               <button key={_id}>{name.de}</button>
             ))
           : null}
-      </ul> */}
+      </div>
     </main>
   );
 }
