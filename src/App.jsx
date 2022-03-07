@@ -4,11 +4,17 @@ import './App.css';
 function App() {
   const [shoppingItems, setShoppingItems] = useState([]);
   const [searchValue, setSearchValue] = useState('');
-  const [shoppingListItems, setShoppingListItems] = useState([]);
+  const [shoppingListItems, setShoppingListItems] = useState(
+    () => getLocalStorage('list') ?? []
+  );
 
   useEffect(() => {
     loadItems();
   }, []);
+  useEffect(() => {
+    setLocalStorage('list', shoppingListItems);
+  }, [shoppingListItems]);
+
   async function loadItems() {
     try {
       const response = await fetch(
@@ -46,7 +52,7 @@ function App() {
               ))
           : null}
       </div>
-      <h2>recently used</h2>
+      <h2>Shopping List</h2>
       <div>
         {shoppingListItems
           ? shoppingListItems.map(({ name, _id }) => (
@@ -56,6 +62,14 @@ function App() {
       </div>
     </main>
   );
+}
+function getLocalStorage(key) {
+  console.log('getLocalStorage is called…');
+  return JSON.parse(localStorage.getItem(key));
+}
+
+function setLocalStorage(key, value) {
+  return localStorage.setItem(key, JSON.stringify(value));
 }
 
 export default App;
