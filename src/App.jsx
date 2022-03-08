@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import './App.css';
 
+import { SearchBar } from './components/SearchBar/SearchBar';
+
 function App() {
   const [shoppingItems, setShoppingItems] = useState([]);
   const [searchValue, setSearchValue] = useState('');
@@ -40,7 +42,7 @@ function App() {
 
   return (
     <main>
-      <input onChange={handleChange}></input>
+      <SearchBar handleChange={handleChange} />
       <div>
         {searchValue
           ? shoppingItems

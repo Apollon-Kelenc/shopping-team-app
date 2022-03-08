@@ -11,16 +11,30 @@
     "prettier:write": "npx prettier --write .",
     "stylelint": "npx stylelint \"**/*.css\"",
     "eslint": "npx eslint \"**/*.js\"",
-    "test": "npm run htmlhint && npm run stylelint && npm run prettier:check && npm run eslint"
+    "test": "npm run htmlhint && npm run stylelint && npm run prettier:check && npm run eslint",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "styled-components": "^5.3.3"
   },
   "devDependencies": {
+    "@babel/core": "^7.17.5",
+    "@storybook/addon-actions": "^6.4.19",
+    "@storybook/addon-essentials": "^6.4.19",
+    "@storybook/addon-interactions": "^6.4.19",
+    "@storybook/addon-links": "^6.4.19",
+    "@storybook/builder-webpack5": "^6.4.19",
+    "@storybook/manager-webpack5": "^6.4.19",
+    "@storybook/react": "^6.4.19",
+    "@storybook/testing-library": "^0.0.9",
     "@vitejs/plugin-react": "^1.0.7",
+    "babel-loader": "^8.2.3",
     "eslint": "^8.10.0",
     "eslint-plugin-react": "^7.29.3",
+    "eslint-plugin-storybook": "^0.5.7",
     "htmlhint": "^1.1.2",
     "prettier": "^2.5.1",
     "stylelint": "^14.5.3",
